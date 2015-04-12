@@ -37,7 +37,7 @@
     "node": "*"
   },
   "dependencies": {
-    "justo-double": "justo-double",
+    "justo-double": "*",
     "vit-logger": "*"
   },
   "peerDependencies": {
