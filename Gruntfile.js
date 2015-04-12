@@ -88,8 +88,7 @@ module.exports = function(grunt) {
       es5: {
         options: {
           require: [
-            "justo-assert",
-            "justo-dummy"
+            "justo-assert"
           ]
         },
 

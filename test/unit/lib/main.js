@@ -1,10 +1,14 @@
-describe("global", function() {
-	it("#justo", function() {
-		global.must.have("justo");
+//imports
+const justo = require("justo-dummy");
+
+//suites
+describe("exports", function() {
+	it("#dummy", function() {
+		justo.must.have("dummy");
 	});
 	
-	it("#justo.dummy", function() {
-		global.justo.must.have("dummy");
+	it("#justo - not added", function() {
+		justo.must.not.have("justo");
 	});
 });
 

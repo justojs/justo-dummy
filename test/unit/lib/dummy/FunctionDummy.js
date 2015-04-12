@@ -1,5 +1,6 @@
 //imports
 const assert = require("assert");
+const justo = require("justo-dummy");
 
 //suite
 describe("FunctionDummy", function() {

@@ -11,7 +11,6 @@ var _inherits = function (subClass, superClass) { if (typeof superClass !== "fun
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-
 /**
  * Creates a test dummy.
  * 
@@ -22,22 +21,10 @@ Object.defineProperty(exports, "__esModule", {
  * @param instance:object			The instance object.
  * @param [members]:object[]	The members(s) to double.
  * @example
- * obj = justo.dummy({}, {length: "attribute", getLength: "method"});
+ * obj = dummy({}, {length: "attribute", getLength: "method"});
  */
 exports.dummy = dummy;
-//variables
-var justo;
 
-exports.justo = justo;
-//(1) install
-if (!global.hasOwnProperty("justo")) {
-	Object.defineProperty(global, "justo", { value: {}, enumerable: true });
-}
-
-exports.justo = justo = global.justo;
-
-//(2) create dummy()
-Object.defineProperty(justo, "dummy", { value: dummy, enumerable: true });
 function dummy() {
 	for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
 		args[_key] = arguments[_key];
