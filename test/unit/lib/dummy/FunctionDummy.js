@@ -1,11 +1,11 @@
 //imports
 const assert = require("assert");
-const justo = require("justo-dummy");
+const dummy = require("justo-dummy").dummy;
 
 //suite
 describe("FunctionDummy", function() {
 	it("call", function() {
-		var dummy = justo.dummy();
-		assert(dummy() === undefined);
+		var double = dummy();
+		assert(double() === undefined);
 	});
 });

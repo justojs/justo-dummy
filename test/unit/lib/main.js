@@ -1,38 +1,20 @@
 //imports
-const justo = require("justo-dummy");
+const dummy = require("justo-dummy").dummy;
 
 //suites
-describe("exports", function() {
-	it("#dummy", function() {
-		justo.must.have("dummy");
-	});
-	
-	it("#justo - not added", function() {
-		justo.must.not.have("justo");
-	});
-});
+describe("#dummy()", function() {
+	it("Function dummy", function() {
+		var double = dummy();
 
-describe("#justo.dummy()", function() {
-	it("dummy() : FunctionDummy", function() {
-		var dummy = justo.dummy();
-		dummy.must.be.instanceOf(Function);
-		dummy.name.must.be.eq("dummy");
+		double.must.be.instanceOf(Function);
+		double.dummy.constructor.name.must.be.eq("FunctionDummy");
 	});
-	
-	it("dummy(instance) : ObjectDummy", function() {
-		var dummy = justo.dummy({});
-		dummy.constructor.name.must.be.eq("ObjectDummy");
-	});
-	
-	it("dummy(instance, []) : ObjectDummy", function() {
-		var dummy = justo.dummy({}, []);
-		dummy.constructor.name.must.be.eq("ObjectDummy");
-	});
-	
-	it("dummy(instance, members)", function() {
-		var dummy = justo.dummy({}, {myAttr: "attr", myMethod: "method"});
-		dummy.constructor.name.must.be.eq("ObjectDummy");
-		dummy.myMethod.must.be.instanceOf(Function);
-		dummy.must.have({myAttr: undefined});
+
+	it("Object dummy", function() {
+		var obj = {};
+		var double = dummy(obj);
+
+		double.must.be.same(obj);
+		obj.dummy.constructor.name.must.be.eq("ObjectDummy");
 	});
 });

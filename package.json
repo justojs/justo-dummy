@@ -1,7 +1,7 @@
 {
   "name": "justo-dummy",
-  "version": "0.1.2",
-  "description": "A test dummy object library.",
+  "version": "0.2.0",
+  "description": "A test dummy library.",
   "homepage": "http://www.justojs.org",
   "license": "MIT",
   "author": {
@@ -23,7 +23,8 @@
     "Unit testing",
     "Test double",
     "Dummy object",
-    "Node.js testing"
+    "Node.js testing",
+    "Browser testing"
   ],
   "bugs": {
     "url": "https://github.com/JustoJS/justo-dummy/issues",
@@ -37,11 +38,10 @@
     "node": "*"
   },
   "dependencies": {
-    "justo-double": "*",
     "vit-logger": "*"
   },
   "peerDependencies": {
-  
+
   },
   "devDependencies": {
     "grunt": "^0.4.5",

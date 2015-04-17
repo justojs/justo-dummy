@@ -1,17 +1,37 @@
 //imports
 const assert = require("assert");
-const justo = require("justo-dummy");
+const dummy = require("justo-dummy").dummy;
 
 //suite
 describe("ObjectDummy", function() {
-	var dummy;
-	
+	var obj, double;
+
 	beforeEach(function() {
-		dummy = justo.dummy({});
+		obj = {};
+		double = dummy(obj);
 	});
-	
-	it("method()", function() {
-		dummy = justo.dummy({}, {myMethod: "method"});
-		assert(dummy.myMethod() === undefined);
+
+	describe("Methods", function() {
+		it("#respond()", function() {
+			double.dummy.respond("sum");
+			double.sum.must.be.instanceOf(Function);
+		});
+
+		it("call", function() {
+			double.dummy.respond("sum");
+			assert(double.sum(1, 2, 3) === undefined);
+		});
+	});
+
+	describe("Attributes", function() {
+		it("#respond()", function() {
+			double.dummy.respond("length", "attr");
+			double.must.have("length");
+		});
+
+		it("call", function() {
+			double.dummy.respond("length", "attr");
+			assert(double.length === undefined);
+		});
 	});
 });

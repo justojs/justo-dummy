@@ -2,62 +2,103 @@
 
 A test dummy library.
 
+Proudly made in Valencia, Spain, EU.
+
 Features:
 
 - Allow to create function dummies.
 - Allow to create object dummies.
 
-Proudly made in Valencia, Spain, EU.
-
 ## Install
 
-`npm install justo-dummy` 
+`npm install justo-dummy`
 
-## justo.dummy()
+## dummy()
 
-The `justo.dummy()` function is used to create the dummies.
+The `dummy()` function is used to create the dummies.
 
 ## Function dummy
 
-A function dummy does nothing. When it is called, it always returns `undefined`.
+A **function dummy** does nothing. When it is called, it always returns `undefined`.
 The `dummy()` signature to use is:
 
 ```
 dummy() : function
-``` 
+```
 
 Example:
 
 ```
-var fn = justo.dummy();
+var fn = dummy();
 ```
 
 ## Object dummy
 
-An object dummy is an object whose members always return `undefined`.
+An **object dummy** is an object whose members always return `undefined`.
 The `dummy()` signature to use is:
 
 ```
-dummy(instance : object) : ObjectDummy
-dummy(instance : object, members : object) : ObjectDummy
+dummy(instance : object) : object
 ```
 
-The `instance` is the instance object to double. Meanwhile, `members` define
-the members to double; the name is the dummy member name and its value indicates
-the member type:
-
-- `attr` or `attribute` to define attributes.
-- `method` to define methods.
+The `instance` is the instance object to double.
 
 Example:
 
 ```
-//no dummy member 
-var obj = justo.dummy({});
-
-//with dummy members
-var obj = justo.dummy(obj, {
-  myAttr: "attr",
-  myMethod: "method"
-});
+var obj = dummy({});
 ```
+
+### API dummy
+
+The object returned by the `dummy()` function is the same object, but it contains
+a new property, `dummy`, which is used to configure the object dummy.
+
+### Configuring responses
+
+The object dummies can configure responses for attributes and methods. This
+configuration is very easy. We must use the `dummy` property of the object dummy.
+
+#### Configuring methods
+
+To configure a method response, we will use the `respond()` method of the API object:
+
+```
+respond(name : string)
+```
+
+The `name` parameter is the method name to double.
+
+Example:
+
+```
+var calcul = dummy({});
+
+calcul.dummy.respond("sum");
+calcul.dummy.respond("sub");
+```
+
+Once we have added a response, we will see the method in the object.
+
+#### Configuring attributes
+
+To configure an attribute response, we will use the following signature of the
+`respond()` method:
+
+```
+respond(name : string, type : string)
+```
+
+The `name` parameter is the attribute name. On the other hand, `type` indicates
+the member type to double: `attr` or `attribute` for attributes and `method` for
+methods, being `method` the default value.
+
+Example:
+
+```
+var list = dummy();
+
+list.dummy.respond("length", "attr");
+```
+
+Once we have added a response, we will see the attribute in the object.
