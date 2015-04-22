@@ -35,7 +35,7 @@ var fn = dummy();
 ## Object dummy
 
 An **object dummy** is an object whose members always return `undefined`.
-The `dummy()` signature to use is:
+The `dummy()` overload to use is:
 
 ```
 dummy(instance : object) : object
@@ -51,8 +51,8 @@ var obj = dummy({});
 
 ### API dummy
 
-The object returned by the `dummy()` function is the same object, but it contains
-a new property, `dummy`, which is used to configure the object dummy.
+The object returned by the `dummy()` contains a property, `dummy`,
+which is used to configure the object dummy.
 
 ### Configuring responses
 
@@ -67,15 +67,15 @@ To configure a method response, we will use the `respond()` method of the API ob
 respond(name : string)
 ```
 
-The `name` parameter is the method name to double.
+The `name` parameter is the method name to double followed by `()`.
 
 Example:
 
 ```
 var calcul = dummy({});
 
-calcul.dummy.respond("sum");
-calcul.dummy.respond("sub");
+calcul.dummy.respond("sum()");
+calcul.dummy.respond("sub()");
 ```
 
 Once we have added a response, we will see the method in the object.
@@ -86,19 +86,17 @@ To configure an attribute response, we will use the following signature of the
 `respond()` method:
 
 ```
-respond(name : string, type : string)
+respond(name : string)
 ```
 
-The `name` parameter is the attribute name. On the other hand, `type` indicates
-the member type to double: `attr` or `attribute` for attributes and `method` for
-methods, being `method` the default value.
+The `name` parameter is the attribute name, prefixed by `@`.
 
 Example:
 
 ```
 var list = dummy();
 
-list.dummy.respond("length", "attr");
+list.dummy.respond("@length");
 ```
 
 Once we have added a response, we will see the attribute in the object.

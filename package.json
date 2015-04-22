@@ -1,11 +1,11 @@
 {
   "name": "justo-dummy",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A test dummy library.",
   "homepage": "http://www.justojs.org",
   "license": "MIT",
   "author": {
-    "name": "Justo.js",
+    "name": "The Justo.js Development Group",
     "email": "justojs.org@outlook.com",
     "url": "http://www.justojs.org"
   },
@@ -17,14 +17,24 @@
     }
   ],
   "keywords": [
+    "Browser test",
+    "Browser testing",
+    "Dummy",
+    "Dummy object",
+    "io.js test",
+    "io.js testing",
     "Justo",
     "Justo.js",
-    "Testing",
-    "Unit testing",
-    "Test double",
-    "Dummy object",
+    "Node test",
+    "Node testing",
+    "Node.js test",
     "Node.js testing",
-    "Browser testing"
+    "Test",
+    "Testing",
+    "Test double",
+    "Test dummy",
+    "Unit test",
+    "Unit testing"
   ],
   "bugs": {
     "url": "https://github.com/JustoJS/justo-dummy/issues",

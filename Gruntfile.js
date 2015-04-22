@@ -1,11 +1,11 @@
 module.exports = function(grunt) {
   "use strict";
-  
+
   // Project configuration
   grunt.initConfig({
     // Metadata
     pkg: grunt.file.readJSON('package.json'),
-    
+
     banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
         '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
         '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
@@ -20,7 +20,7 @@ module.exports = function(grunt) {
 
       es5: {
         files: {
-        	"build/es5/lib/index.js": "build/es5/lib/index.js"
+          "build/es5/lib/index.js": "build/es5/lib/index.js"
         }
       }
     },
@@ -35,21 +35,21 @@ module.exports = function(grunt) {
       options: {
         separator: "\n\n"
       },
-      
+
       preCompiler: {
-      	src: ["lib/main.js", "lib/dummy/*.*"],
-      	dest: "build/es5/lib/index.js"
+        src: ["lib/main.js", "lib/dummy/*.*"],
+        dest: "build/es5/lib/index.js"
       }
     },
-    
+
     copy: {
-    	nodejs: {
-    		files: [
-    		  {cwd: "build/es5/", src: ["lib/index.js"], dest: "dist/es5/nodejs/<%= pkg.name %>/", expand: true},
-    		  {src: ["package.json", "README.md"], dest: "dist/es5/nodejs/<%= pkg.name %>/", expand: true},
-    		  {src: ["test/**/*.*"], dest: "dist/es5/nodejs/<%= pkg.name %>", expand: true}
-    		]
-    	}
+      nodejs: {
+        files: [
+          {cwd: "build/es5/", src: ["lib/index.js"], dest: "dist/es5/nodejs/<%= pkg.name %>/", expand: true},
+          {src: ["package.json", "README.md"], dest: "dist/es5/nodejs/<%= pkg.name %>/", expand: true},
+          {src: ["test/**/*.*"], dest: "dist/es5/nodejs/<%= pkg.name %>", expand: true}
+        ]
+      }
     },
 
     jshint: {
@@ -67,7 +67,7 @@ module.exports = function(grunt) {
 
       test: {
         options: {
-        	jshintrc: true,
+          jshintrc: true,
           ignores: [
             "test/mocha.opts"
           ]
@@ -78,13 +78,13 @@ module.exports = function(grunt) {
     },
 
     mochaTest:{
-    	options: {
-    		ignoreLeaks: false,
-    		quiet: false,
-    		reporter: "spec",
-  			timeout: 1500
-    	},
-    	
+      options: {
+        ignoreLeaks: false,
+        quiet: false,
+        reporter: "spec",
+        timeout: 1500
+      },
+
       es5: {
         options: {
           require: [
@@ -108,7 +108,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks("grunt-mocha-test");
-  
+
   //aliases
   grunt.registerTask("buildes5", ["jshint", "clean:es5", "concat:preCompiler", "babel:es5", "copy:nodejs"]);
   grunt.registerTask("es5", ["buildes5", "mochaTest:es5"]);

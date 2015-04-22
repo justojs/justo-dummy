@@ -4,8 +4,8 @@ const dummy = require("justo-dummy").dummy;
 
 //suite
 describe("FunctionDummy", function() {
-	it("call", function() {
-		var double = dummy();
-		assert(double() === undefined);
-	});
+  it("call", function() {
+    var double = dummy();
+    assert(double() === undefined);
+  });
 });
