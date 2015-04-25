@@ -94,7 +94,7 @@ The `name` parameter is the attribute name, prefixed by `@`.
 Example:
 
 ```
-var list = dummy();
+var list = dummy({});
 
 list.dummy.respond("@length");
 ```
