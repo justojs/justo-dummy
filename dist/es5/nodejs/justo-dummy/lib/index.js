@@ -14,7 +14,8 @@ Object.defineProperty(exports, "__esModule", {
  * @noparam
  *
  * @overload Object dummy for an object
- * @param instance:object      The instance object.
+ * @param obj:object            The instance object.
+ * @param [mem]:string|string[] The members to double.
  */
 exports.dummy = dummy;
 
@@ -56,11 +57,25 @@ function createFunctionDummy() {
 /**
  * Creates an object dummy.
  *
- * @param instance:object    The instance object.
+ * @param obj:object            The instance object.
+ * @param mems:string|string[]  The members to double.
  */
-function createObjectDummy(instance) {
-  Object.defineProperty(instance, "dummy", { value: new ObjectDummy(instance) });
-  return instance;
+function createObjectDummy(obj) {
+  var mems = arguments[1] === undefined ? [] : arguments[1];
+
+  //(1) arguments
+  if (typeof mems == "string") mems = [mems];
+
+  //(2) create dummy object
+  Object.defineProperty(obj, "dummy", { value: new ObjectDummy(obj) });
+
+  //(3) add responses
+  for (var i = 0; i < mems.length; ++i) {
+    obj.dummy.respond(mems[i]);
+  }
+
+  //(4) return object
+  return obj;
 }
 
 /**
