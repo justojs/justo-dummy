@@ -1,5 +1,5 @@
 //imports
-const dummy = require("justo-dummy").dummy;
+const dummy = require("../../../dist/es5/nodejs/justo-dummy").dummy;
 
 //suites
 describe("#dummy()", function() {

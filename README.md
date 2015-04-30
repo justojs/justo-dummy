@@ -1,4 +1,4 @@
-# justo-dummy
+[![Build Status](https://travis-ci.org/JustoJS/justo-dummy.svg)](https://travis-ci.org/JustoJS/justo-dummy)
 
 A test dummy library.
 
