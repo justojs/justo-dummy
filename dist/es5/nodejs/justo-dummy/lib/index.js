@@ -1,12 +1,3 @@
-"use strict";
-
-var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 /**
  * Creates a test dummy.
  *
@@ -17,16 +8,27 @@ Object.defineProperty(exports, "__esModule", {
  * @param obj:object            The instance object.
  * @param [mem]:string|string[] The members to double.
  */
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
 exports.dummy = dummy;
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 function dummy() {
+  var double;
+
+  //(1) create dummy
+
   for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
     args[_key] = arguments[_key];
   }
 
-  var double;
-
-  //(1) create dummy
   if (args.length === 0) double = createFunctionDummy();else double = createObjectDummy.apply(undefined, args);
 
   //(2) return dummy
@@ -61,7 +63,7 @@ function createFunctionDummy() {
  * @param mems:string|string[]  The members to double.
  */
 function createObjectDummy(obj) {
-  var mems = arguments[1] === undefined ? [] : arguments[1];
+  var mems = arguments.length <= 1 || arguments[1] === undefined ? [] : arguments[1];
 
   //(1) arguments
   if (typeof mems == "string") mems = [mems];
@@ -87,6 +89,12 @@ var FunctionDummy = (function () {
     _classCallCheck(this, FunctionDummy);
   }
 
+  /**
+   * A test dummy for an object.
+   *
+   * @readonly instance:object  The instance object to double.
+   */
+
   _createClass(FunctionDummy, [{
     key: "call",
 
@@ -98,12 +106,6 @@ var FunctionDummy = (function () {
 
   return FunctionDummy;
 })();
-
-/**
- * A test dummy for an object.
- *
- * @readonly instance:object  The instance object to double.
- */
 
 var ObjectDummy = (function () {
   /**
@@ -119,19 +121,17 @@ var ObjectDummy = (function () {
     Object.defineProperty(this, "instance", { value: instance });
   }
 
+  /**
+   * Adds a response.
+   *
+   * @param name:string    The method name.
+   */
+
   _createClass(ObjectDummy, [{
     key: "respond",
-
-    /**
-     * Adds a response.
-     *
-     * @param name:string    The method name.
-     */
     value: function respond(name) {
       if (/^@/.test(name)) this.respondAttribute(name.substr(1));else if (/\(\)$/.test(name)) this.respondMethod(name.replace("()", ""));else throw new Error("Member name must be 'method()' or '@attr'. Received: " + name + ".");
     }
-  }, {
-    key: "respondAttribute",
 
     /**
      * Adds an attribute response.
@@ -139,11 +139,11 @@ var ObjectDummy = (function () {
      * @protected
      * @param name:string  The attribute name.
      */
+  }, {
+    key: "respondAttribute",
     value: function respondAttribute(name) {
       Object.defineProperty(this.instance, name, { value: undefined, enumerable: true });
     }
-  }, {
-    key: "respondMethod",
 
     /**
      * Adds a method response.
@@ -151,6 +151,8 @@ var ObjectDummy = (function () {
      * @protected
      * @param name:string  The method name.
      */
+  }, {
+    key: "respondMethod",
     value: function respondMethod(name) {
       Object.defineProperty(this.instance, name, { value: function value() {}, enumerable: true });
     }

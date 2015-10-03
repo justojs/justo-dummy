@@ -1,6 +1,6 @@
 {
   "name": "justo-dummy",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "A test dummy library.",
   "homepage": "http://www.justojs.org",
   "license": "MIT",
@@ -21,8 +21,6 @@
     "Browser testing",
     "Dummy",
     "Dummy object",
-    "io.js test",
-    "io.js testing",
     "Justo",
     "Justo.js",
     "Node test",
@@ -37,7 +35,7 @@
     "Unit testing"
   ],
   "bugs": {
-    "url": "https://github.com/JustoJS/justo-dummy/issues",
+    "url": "https://github.com/justojs/justo-dummy/issues",
     "email": "justojs.org@outlook.com"
   },
   "repository": {
@@ -45,16 +43,16 @@
     "url": "https://github.com/JustoJS/justo-dummy.git"
   },
   "engines": {
-    "node": "*"
+    "node": ">=0.12"
   },
   "dependencies": {
-    "vit-logger": "*"
+
   },
   "peerDependencies": {
 
   },
   "devDependencies": {
-    "grunt": "^0.4.5",
+    "grunt": "*",
     "grunt-babel": "*",
     "grunt-contrib-clean": "*",
     "grunt-contrib-compress": "*",
@@ -62,9 +60,9 @@
     "grunt-contrib-copy": "*",
     "grunt-contrib-jshint": "*",
     "grunt-contrib-uglify": "*",
-    "grunt-mocha-test": "^0.12.7",
+    "grunt-mocha-test": "*",
     "justo-assert": "*",
-    "mocha": "^2.2.4"
+    "mocha": "*"
   },
   "preferGlobal": false,
   "main": "lib/index.js",
