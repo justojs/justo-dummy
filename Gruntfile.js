@@ -20,7 +20,9 @@ module.exports = function(grunt) {
 
       es5: {
         files: {
-          "build/es5/lib/index.js": "build/es5/lib/index.js"
+          "build/es5/lib/index.js": "lib/index.js",
+          "build/es5/lib/FunctionDummy.js": "lib/FunctionDummy.js",
+          "build/es5/lib/ObjectDummy.js": "lib/ObjectDummy.js"
         }
       }
     },
@@ -31,21 +33,10 @@ module.exports = function(grunt) {
       }
     },
 
-    concat: {
-      options: {
-        separator: "\n\n"
-      },
-
-      preCompiler: {
-        src: ["lib/main.js", "lib/dummy/*.*"],
-        dest: "build/es5/lib/index.js"
-      }
-    },
-
     copy: {
       nodejs: {
         files: [
-          {cwd: "build/es5/", src: ["lib/index.js"], dest: "dist/es5/nodejs/<%= pkg.name %>/", expand: true},
+          {cwd: "build/es5/", src: ["lib/*.js"], dest: "dist/es5/nodejs/<%= pkg.name %>/", expand: true},
           {src: ["package.json", "README.md"], dest: "dist/es5/nodejs/<%= pkg.name %>/", expand: true},
           {src: ["test/**/*.*"], dest: "dist/es5/nodejs/<%= pkg.name %>", expand: true}
         ]
@@ -103,14 +94,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-babel");
   grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks("grunt-contrib-compress");
-  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks("grunt-contrib-copy");
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks("grunt-mocha-test");
 
   //aliases
-  grunt.registerTask("buildes5", ["jshint", "clean:es5", "concat:preCompiler", "babel:es5", "copy:nodejs"]);
+  grunt.registerTask("buildes5", ["jshint", "clean:es5", "babel:es5", "copy:nodejs"]);
   grunt.registerTask("es5", ["buildes5", "mochaTest:es5"]);
 
   // Default task

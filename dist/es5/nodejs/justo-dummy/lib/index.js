@@ -1,3 +1,21 @@
+//imports
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = dummy;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var _FunctionDummy = require("./FunctionDummy");
+
+var _FunctionDummy2 = _interopRequireDefault(_FunctionDummy);
+
+var _ObjectDummy = require("./ObjectDummy");
+
+var _ObjectDummy2 = _interopRequireDefault(_ObjectDummy);
+
 /**
  * Creates a test dummy.
  *
@@ -8,17 +26,6 @@
  * @param obj:object            The instance object.
  * @param [mem]:string|string[] The members to double.
  */
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-exports.dummy = dummy;
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function dummy() {
   var double;
@@ -50,7 +57,7 @@ function createFunctionDummy() {
     return res.dummy.call(args);
   };
 
-  Object.defineProperty(res, "dummy", { value: new FunctionDummy() });
+  Object.defineProperty(res, "dummy", { value: new _FunctionDummy2["default"]() });
 
   //(2) return
   return res;
@@ -69,7 +76,7 @@ function createObjectDummy(obj) {
   if (typeof mems == "string") mems = [mems];
 
   //(2) create dummy object
-  Object.defineProperty(obj, "dummy", { value: new ObjectDummy(obj) });
+  Object.defineProperty(obj, "dummy", { value: new _ObjectDummy2["default"](obj) });
 
   //(3) add responses
   for (var i = 0; i < mems.length; ++i) {
@@ -79,84 +86,4 @@ function createObjectDummy(obj) {
   //(4) return object
   return obj;
 }
-
-/**
- * Test dummy for a function.
- */
-
-var FunctionDummy = (function () {
-  function FunctionDummy() {
-    _classCallCheck(this, FunctionDummy);
-  }
-
-  /**
-   * A test dummy for an object.
-   *
-   * @readonly instance:object  The instance object to double.
-   */
-
-  _createClass(FunctionDummy, [{
-    key: "call",
-
-    /**
-     * Calls the function dummy.
-     */
-    value: function call() {}
-  }]);
-
-  return FunctionDummy;
-})();
-
-var ObjectDummy = (function () {
-  /**
-   * Constructor.
-   *
-   * @overload
-   * @param(attr) instance
-   */
-
-  function ObjectDummy(instance) {
-    _classCallCheck(this, ObjectDummy);
-
-    Object.defineProperty(this, "instance", { value: instance });
-  }
-
-  /**
-   * Adds a response.
-   *
-   * @param name:string    The method name.
-   */
-
-  _createClass(ObjectDummy, [{
-    key: "respond",
-    value: function respond(name) {
-      if (/^@/.test(name)) this.respondAttribute(name.substr(1));else if (/\(\)$/.test(name)) this.respondMethod(name.replace("()", ""));else throw new Error("Member name must be 'method()' or '@attr'. Received: " + name + ".");
-    }
-
-    /**
-     * Adds an attribute response.
-     *
-     * @protected
-     * @param name:string  The attribute name.
-     */
-  }, {
-    key: "respondAttribute",
-    value: function respondAttribute(name) {
-      Object.defineProperty(this.instance, name, { value: undefined, enumerable: true });
-    }
-
-    /**
-     * Adds a method response.
-     *
-     * @protected
-     * @param name:string  The method name.
-     */
-  }, {
-    key: "respondMethod",
-    value: function respondMethod(name) {
-      Object.defineProperty(this.instance, name, { value: function value() {}, enumerable: true });
-    }
-  }]);
-
-  return ObjectDummy;
-})();
+module.exports = exports["default"];
