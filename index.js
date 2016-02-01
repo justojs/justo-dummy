@@ -1,6 +1,9 @@
 //imports
-import FunctionDummy from "./FunctionDummy";
-import ObjectDummy from "./ObjectDummy";
+import FunctionDummy from "./lib/FunctionDummy";
+import ObjectDummy from "./lib/ObjectDummy";
+
+//api
+module.exports = dummy;
 
 /**
  * Creates a test dummy.
@@ -12,7 +15,7 @@ import ObjectDummy from "./ObjectDummy";
  * @param obj:object            The instance object.
  * @param [mem]:string|string[] The members to double.
  */
-export default function dummy(...args) {
+function dummy(...args) {
   var double;
 
   //(1) create dummy

@@ -16,11 +16,14 @@ module.exports = function(grunt) {
     babel: {
       options: {
         sourceMap: false,
+        retainLines: true,
+        comments: false,
+        presets: ["es2015"]
       },
 
       es5: {
         files: {
-          "build/es5/lib/index.js": "lib/index.js",
+          "build/es5/index.js": "index.js",
           "build/es5/lib/FunctionDummy.js": "lib/FunctionDummy.js",
           "build/es5/lib/ObjectDummy.js": "lib/ObjectDummy.js"
         }
@@ -36,9 +39,8 @@ module.exports = function(grunt) {
     copy: {
       nodejs: {
         files: [
-          {cwd: "build/es5/", src: ["lib/*.js"], dest: "dist/es5/nodejs/<%= pkg.name %>/", expand: true},
-          {src: ["package.json", "README.md"], dest: "dist/es5/nodejs/<%= pkg.name %>/", expand: true},
-          {src: ["test/**/*.*"], dest: "dist/es5/nodejs/<%= pkg.name %>", expand: true}
+          {cwd: "build/es5/", src: ["index.js", "lib/*.js"], dest: "dist/es5/nodejs/<%= pkg.name %>/", expand: true},
+          {src: ["package.json", "README.md"], dest: "dist/es5/nodejs/<%= pkg.name %>/", expand: true}
         ]
       }
     },
@@ -84,7 +86,8 @@ module.exports = function(grunt) {
         },
 
         src: [
-          "test/unit/**/*.js"
+          "test/unit/index.js",
+          "test/unit/lib/*.js"
         ]
       }
     }
@@ -93,10 +96,8 @@ module.exports = function(grunt) {
   // These plugins provide necessary tasks
   grunt.loadNpmTasks("grunt-babel");
   grunt.loadNpmTasks("grunt-contrib-clean");
-  grunt.loadNpmTasks("grunt-contrib-compress");
   grunt.loadNpmTasks("grunt-contrib-copy");
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks("grunt-mocha-test");
 
   //aliases

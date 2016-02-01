@@ -1,18 +1,17 @@
 {
   "name": "justo-dummy",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "A test dummy library.",
   "homepage": "http://www.justojs.org",
-  "license": "MIT",
   "author": {
-    "name": "The Justo.js Development Group",
-    "email": "justojs.org@outlook.com",
+    "name": "Justo Labs",
+    "email": "justojs@justolabs.com",
     "url": "http://www.justojs.org"
   },
   "contributors": [
     {
       "name": "Raúl G. González",
-      "email": "raulggonzalezsw@outlook.com",
+      "email": "raulggonzalez@justojs.org",
       "url": ""
     }
   ],
@@ -36,38 +35,33 @@
   ],
   "bugs": {
     "url": "https://github.com/justojs/justo-dummy/issues",
-    "email": "justojs.org@outlook.com"
+    "email": "issues@justojs.org"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/justojs/justo-dummy.git"
   },
   "engines": {
-    "node": ">=0.12"
+    "node": ">=4.0.0",
+    "npm": ">=3.0.0"
   },
-  "dependencies": {
-
-  },
-  "peerDependencies": {
-
-  },
+  "dependencies": {},
+  "peerDependencies": {},
   "devDependencies": {
+    "babel-preset-es2015": "*",
     "grunt": "*",
     "grunt-babel": "*",
     "grunt-contrib-clean": "*",
-    "grunt-contrib-compress": "*",
     "grunt-contrib-copy": "*",
     "grunt-contrib-jshint": "*",
-    "grunt-contrib-uglify": "*",
     "grunt-mocha-test": "*",
     "justo-assert": "*",
     "mocha": "*"
   },
   "preferGlobal": false,
-  "main": "lib/index.js",
+  "main": "index.js",
   "files": [
-    "lib",
-    "test"
+    "lib"
   ],
   "scripts": {
     "test": "grunt mochaTest:es5"
